@@ -1,0 +1,348 @@
+/* ==========================================================================
+   1. ROOT VARIABLES & PALETTE SYSTEM
+   ========================================================================== */
+:root {
+    --bg-deep-blue: #020813;
+    --bg-card-blue: rgba(10, 25, 47, 0.2); 
+    --accent-glow: #64ffda;
+    --accent-blue-light: rgba(96, 165, 250, 0.4);
+    --accent-blue-mid: rgba(59, 130, 246, 0.25);
+    --accent-blue-dark: rgba(29, 78, 216, 0.2);
+    --text-primary: #f8fafc;
+    --text-secondary: #e2e8f0;
+    --memory-glow-start: #00f5d4;
+    --memory-glow-end: #00bbf9;
+    --transition-speed: 0.6s;
+    --transition-curve: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ==========================================================================
+   2. RESET & BASE FRAMEWORK STYLES
+   ========================================================================== */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    font-family: 'Segoe UI', Roboto, -apple-system, BlinkMacSystemFont, sans-serif;
+    background-image: url('wpp.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-color: var(--bg-deep-blue);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.bg-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(2, 8, 19, 0.3), rgba(10, 25, 47, 0.4));
+    z-index: -2;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* ==========================================================================
+   3. APPLICATION WORKSPACE DESIGN LAYOUT
+   ========================================================================== */
+.container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    min-height: 100vh;
+    display: block;
+    position: relative;
+    padding: 40px 20px;
+}
+
+.viewport-wrapper {
+    width: 100%;
+    min-height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-section {
+    width: 100%;
+    background: var(--bg-card-blue);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 24px;
+    padding: 35px 30px;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25), 
+                inset 0 1px 2px rgba(255, 255, 255, 0.15);
+    display: none;
+    opacity: 0;
+    transform: scale(0.93) translateY(15px);
+    transition: opacity var(--transition-speed) var(--transition-curve),
+                transform var(--transition-speed) var(--transition-curve);
+    will-change: transform, opacity;
+}
+
+.card-section.active {
+    display: block;
+    opacity: 1;
+    transform: scale(1) translateY(0);
+}
+
+/* ==========================================================================
+   4. COMPONENT GRAPHICS & TYPOGRAPHY SYSTEM
+   ========================================================================== */
+.gif-wrapper {
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto 30px auto;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gif-element {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.animated-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: #ffffff;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.5s ease 0.25s, transform 0.5s ease 0.25s;
+    line-height: 1.4;
+    letter-spacing: 0.5px;
+}
+
+.card-section.active .animated-text {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.wishes-text {
+    font-size: 1.02rem;
+    font-weight: 400;
+    text-align: left;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 25px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: 4px solid var(--accent-glow);
+    margin-bottom: 30px;
+    color: var(--text-secondary);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    line-height: 1.6;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.5s ease 0.2s, transform 0.5s ease 0.2s;
+}
+
+.card-section.active .wishes-text {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.wishes-text h3 {
+    font-size: 1.35rem;
+    color: var(--accent-glow);
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.wishes-text p {
+    margin-bottom: 14px;
+}
+
+.wishes-text p:last-child {
+    margin-bottom: 0;
+}
+
+/* ==========================================================================
+   5. INTERACTION INTERFACE (ALL BUTTONS FULL GLASSMORPHISM)
+   ========================================================================== */
+.btn {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 15px 36px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15),
+                inset 0 1px 1px rgba(255, 255, 255, 0.2);
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0;
+    transform: translateY(12px);
+}
+
+.card-section.active .btn {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease 0.5s, transform 0.4s ease 0.5s;
+}
+
+.btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.18);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Style khusus untuk tombol kedua yang masih terkunci */
+.btn.locked-prize {
+    opacity: 0.4 !important;
+    cursor: not-allowed;
+    border-color: rgba(255, 0, 0, 0.15);
+}
+.btn.locked-prize:hover {
+    transform: none !important;
+    background: rgba(255, 255, 255, 0.07);
+    box-shadow: none !important;
+}
+
+.btn.clicked-memory {
+    background: linear-gradient(135deg, var(--memory-glow-start), var(--memory-glow-end)) !important;
+    color: var(--bg-deep-blue) !important;
+    font-weight: 700 !important;
+    box-shadow: 0 0 25px rgba(0, 245, 212, 0.85) !important;
+    text-shadow: none !important;
+    border-color: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* Prize Box layout styling */
+.prize-grid {
+    display: block;
+    width: 100%;
+}
+
+.prize-grid .btn {
+    width: 100%;
+    margin-bottom: 14px;
+    opacity: 0;
+    transform: translateY(15px);
+}
+
+.prize-grid .btn:last-child {
+    margin-bottom: 0;
+}
+
+/* Delays for cascading button entries on Section 5 */
+.card-section.active .prize-grid .btn:nth-child(1) { transition: all 0.3s ease, opacity 0.4s ease 0.4s, transform 0.4s ease 0.4s; opacity: 1; transform: translateY(0); }
+.card-section.active .prize-grid .btn:nth-child(2) { transition: all 0.3s ease, opacity 0.4s ease 0.5s, transform 0.4s ease 0.5s; opacity: 1; transform: translateY(0); }
+
+/* ==========================================================================
+   6. AUDIO HUD FLOATING STATUS DISPLAY
+   ========================================================================== */
+.audio-status {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 10px 18px;
+    border-radius: 30px;
+    font-size: 0.82rem;
+    color: var(--accent-glow);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    display: none;
+    align-items: center;
+    gap: 10px;
+    z-index: 9999;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+.music-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    width: 16px;
+    height: 14px;
+}
+
+.bar {
+    width: 3px;
+    height: 100%;
+    background-color: var(--accent-glow);
+    animation: bounceIndicator 0.8s ease-in-out infinite alternate;
+}
+.bar:nth-child(2) { animation-delay: 0.25s; }
+.bar:nth-child(3) { animation-delay: 0.45s; }
+
+@keyframes bounceIndicator {
+    0% { height: 25%; }
+    100% { height: 100%; }
+}
+
+#particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.footer-credits {
+    text-align: center;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.4);
+    margin-top: 30px;
+    letter-spacing: 1px;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}

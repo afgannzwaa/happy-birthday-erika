@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Special Day Erika ✨</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="bg-overlay"></div>
+    <canvas id="particles-js"></canvas>
+
+    <div class="audio-status" id="audioStatus">
+        <span>🎵 Playing</span>
+        <div class="music-bars">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </div>
+
+    <audio id="bgMusic" src="music.mp3" loop preload="auto"></audio>
+
+    <div class="container">
+        <div class="viewport-wrapper">
+
+            <div class="card-section active" id="sec1">
+                <div class="gif-wrapper">
+                    <img src="gif1.gif" alt="GIF 1 Content" class="gif-element">
+                </div>
+                <div class="animated-text">HII ERIKA</div>
+                <button class="btn" id="btn1" onclick="executeSection1Sequence()">SAY HEY</button>
+            </div>
+
+            <div class="card-section" id="sec2">
+                <div class="gif-wrapper">
+                    <img src="gif2.gif" alt="GIF 2 Content" class="gif-element">
+                </div>
+                <div class="animated-text">open message</div>
+                <button class="btn" id="btn2" onclick="executeSection2Sequence()">OPEN TEXT</button>
+            </div>
+
+            <div class="card-section" id="sec3">
+                <div class="gif-wrapper">
+                    <img src="gif3.gif" alt="GIF 3 Content" class="gif-element">
+                </div>
+                <div class="animated-text">happy special day</div>
+                <button class="btn" id="btn3" onclick="executeSection3Sequence()">iyaa</button>
+            </div>
+
+            <div class="card-section" id="sec4">
+                <div class="gif-wrapper">
+                    <img src="gif4.gif" alt="GIF 4 Content" class="gif-element">
+                </div>
+                <div class="wishes-text">
+                    <h3>Happy Sweet 17th, Erika! ✨</h3>
+                    <p>Selamat memasuki umur yang ke-17 yaa! Momen ini cuma dateng sekali seumur hidup, dan aku berharap hari-hari kamu ke depannya bakal dipenuhi sama banyak kebahagiaan, tawa, dan hal-hal luar biasa.</p>
+                    <p>Semoga kamu tumbuh jadi pribadi yang semakin dewasa, sehat selalu, dilancarkan segala urusan dan cita-citanya, serta selalu dikelilingi sama orang-orang yang tulus sayang sama kamu.</p>
+                    <p>Tetap jadi Erika yang ceria dan selalu bersinar ya! Cheers untuk babak baru yang penuh warna dalam hidupmu! 🥳🎂💕</p>
+                </div>
+                <button class="btn" id="btn4" onclick="executeSection4Sequence()">go check</button>
+            </div>
+
+            <div class="card-section" id="sec5">
+                <div class="gif-wrapper">
+                    <img src="gif5.gif" alt="GIF 5 Content" class="gif-element">
+                </div>
+                <div class="animated-text" style="font-size: 1.15rem; margin-bottom: 25px;">
+                    beberapa hal yang udah aku siapin buat kamu, semoga kamu suka yaa
+                </div>
+                
+                <div class="prize-grid">
+                    <button class="btn" id="prize1" onclick="handlePrize1Click()">bukaa yang ini dulu</button>
+                    <button class="btn" id="prize2" onclick="handlePrize2Click()">inii jugaa nanti yaa</button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer-credits">made with afgan for erika </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
